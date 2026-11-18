@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+
+    <!-- Accent Gradients -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="40%" stop-color="#f59e0b" />
+      <stop offset="80%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+
+    <linearGradient id="glowRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="glowCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.75" stroke-opacity="0.25" />
+    </pattern>
+
+    <style>
+      .glow-pulse {
+        animation: pulse 4s ease-in-out infinite alternate;
+      }
+      .signal-flow {
+        stroke-dasharray: 8 16;
+        animation: dash 12s linear infinite;
+      }
+      .node-ping {
+        animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        transform-origin: center;
+      }
+      .badge-float {
+        animation: float 6s ease-in-out infinite alternate;
+      }
+      .radar-sweep {
+        animation: sweep 8s linear infinite;
+        transform-origin: 1050px 100px;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 0.3; transform: scale(0.98); }
+        100% { opacity: 0.8; transform: scale(1.02); }
+      }
+      @keyframes dash {
+        to { stroke-dashoffset: -200; }
+      }
+      @keyframes ping {
+        0% { r: 4px; opacity: 1; }
+        75%, 100% { r: 16px; opacity: 0; }
+      }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(-8px); }
+      }
+      @keyframes sweep {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)" />
+  <rect width="100%" height="100%" fill="url(#grid)" />
+
+  <!-- Ambient Glowing Orbs in Background -->
+  <circle cx="150" cy="80" r="180" fill="url(#glowRed)" class="glow-pulse" />
+  <circle cx="1080" cy="340" r="220" fill="url(#glowCyan)" class="glow-pulse" style="animation-delay: -2s;" />
+
+  <!-- Animated Circuit & Alert Signal Paths -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Signal Flow Lines -->
+    <path d="M 80 340 Q 240 370 420 340 T 780 350 T 1120 330" stroke="#ef4444" stroke-width="2" stroke-opacity="0.6" class="signal-flow" />
+    <path d="M 120 370 Q 300 320 520 370 T 900 320 T 1150 360" stroke="#06b6d4" stroke-width="2" stroke-opacity="0.4" class="signal-flow" style="animation-duration: 8s; animation-direction: reverse;" />
+  </g>
+
+  <!-- Radar / Heartbeat Scanner Visual in Top Right Corner -->
+  <g opacity="0.35">
+    <circle cx="1050" cy="100" r="60" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 4" />
+    <circle cx="1050" cy="100" r="40" fill="none" stroke="#38bdf8" stroke-width="1" />
+    <circle cx="1050" cy="100" r="20" fill="none" stroke="#38bdf8" stroke-width="1" />
+    <circle cx="1050" cy="100" r="3" fill="#38bdf8" />
+    <line x1="1050" y1="100" x2="1110" y2="100" stroke="#38bdf8" stroke-width="2" class="radar-sweep" />
+  </g>
+
+  <!-- Heartbeat ECG Waveform behind title -->
+  <path d="M 60 210 L 220 210 L 235 190 L 245 235 L 260 160 L 275 250 L 290 200 L 305 215 L 320 210 L 1140 210" 
+        fill="none" stroke="#ef4444" stroke-width="1.8" stroke-opacity="0.3" class="signal-flow" style="animation-duration: 6s;" />
+
+  <!-- Dynamic Status Indicator Nodes with Ping Effects -->
+  <g transform="translate(140, 60)">
+    <circle cx="0" cy="0" r="4" fill="#ef4444" />
+    <circle cx="0" cy="0" r="4" fill="none" stroke="#ef4444" stroke-width="2" class="node-ping" />
+  </g>
+  <g transform="translate(1020, 60)">
+    <circle cx="0" cy="0" r="4" fill="#10b981" />
+    <circle cx="0" cy="0" r="4" fill="none" stroke="#10b981" stroke-width="2" class="node-ping" style="animation-delay: 1s;" />
+  </g>
+
+  <!-- Foreground Content Block -->
+  <!-- Top Category Tag / Pill -->
+  <g transform="translate(100, 72)" class="badge-float">
+    <rect width="320" height="34" rx="17" fill="#1e293b" stroke="#475569" stroke-width="1" />
+    <circle cx="20" cy="17" r="6" fill="#10b981" />
+    <circle cx="20" cy="17" r="6" fill="none" stroke="#10b981" stroke-width="1.5" class="node-ping" />
+    <text x="36" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#94a3b8" letter-spacing="1.5">
+      SRE • DEVOPS • SEC-OPS ECOSYSTEM
+    </text>
+  </g>
+
+  <!-- Primary Foreground Title -->
+  <g transform="translate(100, 160)">
+    <text font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="44" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
+      Awesome Incident Response
+    </text>
+    <text x="0" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="44" font-weight="900" fill="url(#accentGrad)" letter-spacing="-0.5">
+      &amp; Incident Management
+    </text>
+  </g>
+
+  <!-- Subtitle / Tagline -->
+  <text x="100" y="255" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#94a3b8">
+    The Definitive Landscape of SaaS Platforms &amp; Open-Source Tools for On-Call, RCA, ChatOps, and Status Pages
+  </text>
+
+  <!-- Interactive / Modern Feature Pills in Foreground -->
+  <g transform="translate(100, 290)">
+    <!-- Pill 1: On-Call Scheduling -->
+    <g transform="translate(0, 0)">
+      <rect width="175" height="36" rx="18" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2" />
+      <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#f87171">🚨 On-Call Alerting</text>
+    </g>
+    <!-- Pill 2: ChatOps War Rooms -->
+    <g transform="translate(187, 0)">
+      <rect width="165" height="36" rx="18" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2" />
+      <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#fbbf24">💬 ChatOps &amp; RCA</text>
+    </g>
+    <!-- Pill 3: Status Pages -->
+    <g transform="translate(364, 0)">
+      <rect width="180" height="36" rx="18" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2" />
+      <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#34d399">📡 Live Status Pages</text>
+    </g>
+    <!-- Pill 4: SOAR & DFIR -->
+    <g transform="translate(556, 0)">
+      <rect width="185" height="36" rx="18" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2" />
+      <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#60a5fa">🛡️ SOAR Automation</text>
+    </g>
+    <!-- Pill 5: AIOps -->
+    <g transform="translate(753, 0)">
+      <rect width="170" height="36" rx="18" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2" />
+      <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#c084fc">🤖 AIOps Correlation</text>
+    </g>
+  </g>
+
+  <!-- Bottom Accent Gradient Line -->
+  <rect x="0" y="414" width="1200" height="6" fill="url(#accentGrad)" />
+</svg>
